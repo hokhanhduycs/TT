@@ -1,0 +1,136 @@
+<html>
+    <head>
+
+        <meta charset="utf-8">
+        <meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0" name="viewport" />
+        <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css">
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js"></script>
+        
+        <link href="/static/css/nav.css" rel="stylesheet">
+        <link href="/static/css/order.css" rel="stylesheet">
+
+        <!-- icon -->
+        <script src='https://kit.fontawesome.com/a076d05399.js'></script>
+
+        <script src="https://unpkg.com/ionicons@5.1.2/dist/ionicons.js"></script>
+
+        <title>Hệ thống quản lý</title>
+
+    </head>
+    <body >
+  
+
+      
+      <div class="order">
+        <div class="container-fluid">
+          <div class="row nav-extra">   
+              <div class="col-12 col-sm-12">
+                  <nav class="nav nav-pills nav-fill">
+                      <a class="nav-item nav-link disabled active" href="#">Tất cả</a>
+                      <a class="nav-item nav-link disabled" href="#">Đồ uống</a>
+                      <a class="nav-item nav-link disabled" href="#">Thức ăn</a>
+                      <a class="search nav-link disabled" href="#"><i class='fas fa-search' style='font-size:20px'></i></a>
+                      
+                    </nav>
+              </div>
+          </div>
+          </div>  
+  
+            <div class="container">
+              <div class="title-sp">Tất cả</div>
+              <div class="row sp">
+              <% if(data && data.product){ %>
+                <% for (var i=0; i < data.product.length; i++){ %>
+                <div class="card " data-toggle="modal" data-target="#add<%= data.product[i].p_id %>">
+                  <img class="card-img" src="<%= data.product[i].p_img %>" alt="">
+                  <div class="card-body">
+                    <a  class="card-title"><%= data.product[i].p_name %></a>
+                    <hr>
+                    <p class="gia-moi"><%= data.product[i].p_price %> vnđ  <i class='fas fa-plus card-icon' style='font-size:18px'></i></p></div>
+                </div>
+
+                        <!-- The Modal -->
+                <div class="modal" id="add<%= data.product[i].p_id %>">
+                  <div class="modal-dialog">
+                    <div class="modal-content">
+                    
+                      <!-- Modal Header -->
+                      <div class="modal-header">
+                        <button type="button" class="close" data-dismiss="modal">&times;</button>
+                      </div>
+                      <!-- Modal footer -->
+                      <div class="modal-footer">
+                        <div class="container-fluid">
+                          <form  method="POST" action="/order">
+                            <div class="row">
+                              <div class="col-55 m-auto text-left">
+                                <img src="<%= data.product[i].p_img %>" width="100" class="img-fluid">
+                              </div>
+                              <div class="col-7 text-left">
+                                <h3><%= data.product[i].p_name %></h3>
+                                <h5 style="color: #FF0040;" name="gia" value="19000"><%= data.product[i].p_price %> vnđ</h5>
+                                <input type="hidden" name="p_id" value="<%= data.product[i].p_id %>">
+                                <input type="hidden" name="db_total" value="<%= data.product[i].p_price%> ">
+                              </div>
+                            </div>
+                                <div class="form-inline text-center row">
+                                  <div class="col-5">
+                                    <div class="qty-changer row">
+
+
+                                      <button type="button"  onclick="this.parentNode.querySelector('input[type=number]').stepDown()" class="qty-change">-</button>
+                                      <input class="qty-input form-group m-auto" type="number" min="0" name="db_quantity" value="1"/>
+                                      <button type="button" onclick="this.parentNode.querySelector('input[type=number]').stepUp()" class="qty-change">+</button>
+
+                                  </div>
+                                  </div>
+                                  <div class="col-7 text-left">
+                                    <button type="submit" class="btn btn-yellow m-auto" name="addToCart" value="42">Thêm món</button>
+                                  </div>
+                                </div>
+                          </form>
+                        </div>
+                      </div>
+                      
+                    </div>
+                  </div>
+                </div>
+
+                <% } %>
+              <% } %>
+              </div>
+            </div>
+
+
+          <% if(detail_bill && detail_bill.db_quantity && detail_bill.db_total){ %>
+          <div id="41" class="salad container-fluid ">
+            <div class="row">
+              <div class="somon col-4 text-center"><p class=""><%= detail_bill.db_quantity %></p></div>
+              
+              <a class="salad-name col-4 text-center" href="/cart/<%= b_id %>">Xem giỏ hàng</a>
+              <div class="salad-price col-4 text-center"><%= detail_bill.db_total %> đ</div>
+            </div>
+          </div>
+          <% } %>
+      </div>
+
+
+
+
+        </div>
+        <div class="row nav-main">
+          <div class="col-12 col-sm-12">
+              <nav class="nav nav-pills nav-fill ">
+                  <a class="nav-item nav-link disabled active" href="#"><i class='far fa-edit' style='font-size:16px'></i><br>Chọn món</a>
+                  <!-- <a class="nav-item nav-link disabled" href="#"><i class='fas fa-coffee' style='font-size:16px'></i><br>Bàn</a> -->
+                  <a class="nav-item nav-link disabled" href="#"><i class='far fa-bell' style='font-size:16px'></i>  <span class="badge badge-primary badge-pill">14</span> <br>Thông báo</a>
+                  <a class="nav-item nav-link disabled" href="#"><i class='far fa-user' style='font-size:16px'></i><br>Cá Nhân</a>
+                </nav>
+          </div>
+      </div>
+    </body>
+</html>

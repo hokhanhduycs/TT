@@ -1,0 +1,92 @@
+*{
+    margin: 0;
+    padding: 0;
+}
+
+  .content{
+    border-radius: 2px !important;
+    height: 120px;
+    margin: 15px 0 !important;
+    padding: 12px 0 0 0;
+    background-repeat: repeat-x;
+    border: 1px solid #dfe4ed;
+    width: 150px;
+}
+
+.content>p {
+    text-transform: uppercase;
+    cursor: pointer;
+    margin: auto;
+}
+
+
+
+.content .icon {
+    border: 1.4px solid;
+    width: 65px;
+    height: 65px;
+    color: #ff9900;
+    margin: auto;
+    border-radius: 50%;
+}
+
+.content .icon i {
+    margin: auto;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -90%);
+}
+
+.edit {
+    transition: .5s;
+    background: #e2f3ef;
+    border-radius: 5px;
+    position: absolute;
+    width: 75%;
+    padding: 8px;
+    top: 29%;
+    z-index: 998;
+    left: 10%;
+    color: #3c3c3c;
+    display: none;
+}
+.edit.show{
+    display: block;
+}
+
+.edit>hr {
+    margin: 0;
+}
+
+.edit>a, .edit>div {
+    text-transform: initial;
+    cursor: pointer;
+    font-weight: 500;
+    text-decoration: none;
+}
+
+.sua {
+    color: #00a724;
+}
+
+.xoa {
+    color: #e83737;
+}
+
+.edit>a:hover, .edit>div:hover {
+    font-weight: 700;
+}
+
+.edit:before {
+    content: "";
+    /*     background: red; */
+    width: 0;
+    height: 0;
+    z-index: 999;
+    position: absolute;
+    top:-20px;
+    left:20px;
+    border: 10px solid transparent;
+    border-bottom: 10px solid #e2f3ef;
+    }

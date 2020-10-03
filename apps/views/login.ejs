@@ -1,0 +1,46 @@
+<html>
+    <head>
+        <meta charset="utf-8">
+        <meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0" name="viewport" />
+        <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+
+        <link href="/static/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
+        <link href="/static/css/login.css" rel="stylesheet">
+        <script src="/static/js/bootstrap.min.js"></script>
+        <script src="/static/js/jquery-3.3.1.js"></script>
+
+    </head>
+    <body id="LoginForm">
+        <div class="container">
+        <div class="row">   
+            <div class="login-form m-auto">
+                <div class="main-div">
+                    <div class="panel">
+                        <h2>Đăng nhập</h2>
+                        <% if (data && data.err) {%>
+                        <div class="alert alert-danger" role="alert">
+                            <p><%= data.err %></p>
+                        </div>
+                        <%}%>
+                        
+                    </div>
+                        <form id="Login" method="POST" action="/login">
+
+                            <div class="form-group">
+                                <input type="phone" name="phone" class="form-control" id="inputPassword" placeholder="Số điện thoại">
+                            </div>
+
+                            <div class="form-group">
+                                <input type="password" name="password" class="form-control" id="inputPassword" placeholder="Mật khẩu">
+                            </div>
+                            <button type="submit" class="btn btn-primary">Đăng nhập</button>
+
+                        </form>
+                    </div>
+                    <p class="botto-text"> Designed by Duy</p>
+            </div>
+        </div>     
+        </div>
+
+    </body>
+</html>

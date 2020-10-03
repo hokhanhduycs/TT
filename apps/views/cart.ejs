@@ -1,0 +1,258 @@
+<html>
+    <head>
+
+        <meta charset="utf-8">
+        <meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0" name="viewport" />
+        <!-- <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" /> -->
+
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css">
+
+
+        <link href="/static/css/cart.css" rel="stylesheet">
+
+        <script src="/socket.io/socket.io.js"></script>
+        <title>Hệ thống quản lý</title>
+
+    </head>
+    <body>
+
+
+
+
+
+        <div class="container">
+            <div class="cart">
+                <div class="row  modal-header">
+                    <button type="button" class="close col-1 text-center" data-dismiss="modal" aria-label="Close">
+                        <!-- <span aria-hidden="true">×</span> -->
+                    </button>
+
+                    <div class="col-11 name-cart text-center">
+                        Giỏ hàng của bạn
+                    </div>
+                </div>
+        </div>
+        </div>
+        
+        <form>
+        <div class="container-fluid">
+            <div class="container">
+                <p class="t-info-cart">Thông tin đơn hàng </p>
+            </div>
+        </div>
+        <div class="container">   
+
+                <div class="row info-cart">
+                    <div class="col-7 e-cart" id="user"><i class='far fa-user mr-3' style='font-size:16px'></i><%= bill[0].e_name %></div>
+                    <div class="col-5 num-table test-center">
+                        <i class='fas fa-coffee mr-3' style='font-size:16px'></i>
+                        <!-- <label for="cars">Choose a car:</label> -->
+                        <select name="cars" id="numTable">
+                            <option value="1">1</option>
+                            <option value="2">2</option>
+                            <option value="3">3</option>
+                            <option value="4">4</option>
+                            <option value="5">5</option>
+                            <option value="6">6</option>
+                            <option value="7">7</option>
+                            <option value="8">8</option>
+                            <option value="9">9</option>
+                            <option value="10">10</option>
+                            <option value="11">11</option>
+                            <option value="12">12</option>
+                            <option value="13">13</option>
+                            <option value="14">14</option>
+                            <option value="15">15</option>
+                            <option value="16">16</option>
+                            <option value="17">17</option>
+
+                        </select>
+                    </div>
+                </div>
+            
+        </div>
+
+        <div class="container-fluid">
+            <div class="container">
+                <p class="t-ctdh">Chi tiết đơn hàng</p>
+            </div>
+        </div>
+        <div class="container">
+            <div class="ctdh">
+
+                <% var tong = 0 %>
+
+                <% if(detailBill){ %>
+                    <% for (var i=0; i < detailBill.length; i++){ %>
+                <div class="row">
+                    <div class="col-2 sl text-center" data-toggle="modal" data-target="#adds<%= detailBill[i].b_id %><%= detailBill[i].p_id %>">
+                        <p id="hsl<%= detailBill[i].b_id %><%= detailBill[i].p_id %>"><%= detailBill[i].db_quantity %></p>
+                    </div>
+                    <div class="col-6 row">
+                        <p class="product-name col-12" ><%= detailBill[i].p_name %></p>
+                        <div class="ghichu col-12" style="font-size: 10px;">
+                            <input type="text" class="form-control"  placeholder="Ghi chú">
+                        </div>
+                    </div>
+
+                    <div class="col-4 text-right ctdh-gia" data-toggle="modal" data-target="#adds">
+                        <p id="hgia<%= detailBill[i].b_id %><%= detailBill[i].p_id %>"><%= detailBill[i].db_total.toFixed(2).replace(/\d(?=(\d{3})+\.)/g, '$&,') %></p>
+                    </div>
+                    <% tong += detailBill[i].db_total %>
+
+                </div>
+
+                <!-- The Modal -->
+                <div class="modal" id="adds<%= detailBill[i].b_id %><%= detailBill[i].p_id %>">
+                    <div class="modal-dialog">
+                        <div class="modal-content">
+                        
+                        <!-- Modal Header -->
+                        <div class="modal-header">
+                            <button type="button" class="close" data-dismiss="modal">&times;</button>
+                        </div>
+                        <!-- Modal footer -->
+                        <div class="modal-footer">
+                            <div class="container">
+                            <!-- <form  method="POST" action="/upProduct"> -->
+                                <div class="row">
+                                <div class="col-55 m-auto text-left">
+                                    <img src="<%= detailBill[i].p_img%> " width="100" class="img-fluid">
+                                </div>
+                                <div class="col-7 text-left">
+                                    <h3><%= detailBill[i].p_name%></h3>
+                                    <input id="gia<%= detailBill[i].b_id %><%= detailBill[i].p_id %>" type="number" style="color: #FF0040;" value="<%= detailBill[i].db_total %>">
+                                    <input type="text" class="form-control"  placeholder="Ghi chú">
+                                </div>
+                                </div>
+                                    <div class="form-inline text-center row">
+                                    <div class="col-5">
+                                        <div class="qty-changer row">
+            
+                                            
+                                        <button type="button" onclick="down(<%= detailBill[i].b_id%>, <%= detailBill[i].p_id%>, <%= detailBill[i].p_price%>)" class="qty-change">-</button>
+                                        <input id="sl<%= detailBill[i].b_id %><%= detailBill[i].p_id %>" class="qty-input form-group m-auto" type="number" min="0" name="quantity" value="<%= detailBill[i].db_quantity%>"/>
+                                        <button type="button" onclick="up(<%= detailBill[i].b_id%>, <%= detailBill[i].p_id%>, <%= detailBill[i].p_price%>)" class="qty-change">+</button>
+            
+                                        </div>
+                                    </div>
+                                    <div class="col-7 text-left">
+                                        <div data-dismiss="modal"data-dismiss="modal" class="btn btn-yellow  m-auto" onclick="upProduct(<%= detailBill[i].b_id%>, <%= detailBill[i].p_id%>)">Cập nhật</div>
+                                    </div>
+                                    </div>
+                                
+                                
+                            <!-- </form> -->
+                            </div>
+                        </div>
+                        
+                        </div>
+                    </div>
+                    </div>
+                
+
+                    <% } %>
+                <% } %>
+
+
+            </div>
+
+            
+        </div>
+        <div class="container-fluid ctdh--cuoi">
+            <div class="container">
+            <div class="tonggia row">
+                <div class="t-tong col-6">Tổng cộng</div>
+                <div class="tong col-6 text-right" id="tonggia"><%= tong.toFixed(2).replace(/\d(?=(\d{3})+\.)/g, '$&,') %></div>
+            </div>
+            </div>
+
+            <div class="bnt btn-yellow btn-lg btn-block text-center" id="inBill">Lưu và in đơn</div>
+            
+        </div>
+        </form>
+
+
+    </body>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js"></script>
+    <!-- icon -->
+    <script src='https://kit.fontawesome.com/a076d05399.js'></script>
+
+    <script src="/socket.io/socket.io.js"></script>
+
+    <script>
+        var socket = io.connect('http://localhost:3000');
+
+        socket.on("connect", function(){
+            console.log("User is connecting to server");
+        })
+
+        // lay tt in bill
+        // $( "#inBill" ).click(function(){
+        //     var data = {
+        //         user : $("#user").text(),
+        //         table : $("#numTable").val(),
+        //         ctdh :[
+        //             {
+        //                 sl : 1,
+        //                 sp : "caffe đá",
+        //                 gia: 25000
+        //             },
+        //             {
+        //                 sl : 1,
+        //                 sp : "caffe sửa",
+        //                 gia: 25000
+        //             }
+
+        //         ],
+        //         tonggia : $("#tonggia").text()
+        //     } 
+        //     socket.emit("print", data);
+        // });
+        function up(b_id, p_id, price){
+            // console.log(sl);
+            $( "#sl"+b_id+p_id ).val(Number($( "#sl"+b_id+p_id ).val())+1);
+            $( "#gia"+b_id+p_id ).val(Number($( "#gia"+b_id+p_id ).val())+Number(price));
+            $("#tonggia").html((parseFloat($("#tonggia").html())*1000+price).toFixed(2).replace(/\d(?=(\d{3})+\.)/g, '$&,'));
+            console.log(parseFloat($("#tonggia").html())*1000);
+        }
+
+        function down(b_id, p_id, price){
+            // console.log(sl);
+            $( "#sl"+b_id+p_id ).val(Number($( "#sl"+b_id+p_id ).val())-1);
+            $( "#gia"+b_id+p_id ).val(Number($( "#gia"+b_id+p_id ).val())-Number(price));
+            $("#tonggia").html((parseFloat($("#tonggia").html())*1000-price).toFixed(2).replace(/\d(?=(\d{3})+\.)/g, '$&,'));
+            // console.log(price);
+        }
+
+        function upProduct(b_id, p_id, sl){
+            var sl = $( "#sl"+b_id+p_id ).val();
+            var gia = $( "#gia"+b_id+p_id ).val();
+            var data = {
+                sl : sl,
+                gia: gia,
+                b_id: b_id,
+                p_id: p_id
+                // tonggia: $("#tonggia").text()
+            }
+            // console.log(data);
+            socket.emit("upProduct", data);
+        }
+        
+        socket.on("upProductX", function(w, p){
+            console.log(w, p);
+            $( "#hsl"+w.b_id+w.p_id ).text( p.db_quantity);
+            $( "#sl"+w.b_id+w.p_id ).text( p.db_quantity);
+
+            $( "#hgia"+w.b_id+w.p_id ).text( p.db_total);
+            $( "#gia"+w.b_id+w.p_id ).val( p.db_total);
+
+        })
+
+    </script>
+    
+
+
+</html>

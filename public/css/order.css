@@ -1,0 +1,274 @@
+*{
+    margin: 0;
+    padding: 0;
+}
+
+.modal {
+  top: -15%;
+}
+.somon.col-4.text-center p {
+    border: 1px solid;
+    width: 27px;
+    margin: auto;
+}
+
+.salad.container-fluid {
+    background: #ff9900;
+    color: white;
+    font-size: 15px;
+    position: fixed;
+    bottom: 43px;
+    padding: 14px 0;
+}
+
+.order {
+    margin-bottom: 103px;
+}
+
+.fade.modal.show img {
+    width: 126px;
+}
+
+.modal-dialog {
+    position: relative;
+    top: 30%;
+    transform: translateY(-50%);
+}
+
+.title-sp {
+    font-size: 20px;
+    margin: 10px 0;
+    padding: 0;
+    font-weight: 400;
+}
+
+.row.sp {
+
+    border-top: 1px solid #ff9900;
+    border-left: 1px solid #ff9900;
+}
+
+i.fas.fa-plus.card-icon {
+    color: ff9900;
+    float: right;
+    position: relative;
+    top: 6px;
+}
+
+
+
+.row.nav-extra a.nav-item {
+    font-size: 14px;
+    color: #2b2a2a;
+    font-weight: 500;
+}
+
+.row.nav-extra{
+    margin-top:15px
+}
+
+.nav-extra a.nav-item.active {
+    border-bottom: 2px solid #ff9900;
+    color: black !important;
+    border-radius: 0 !important;
+}
+.nav-extra a.nav-item:hover {
+    border-bottom: 2px solid #ff9900;
+    color: black !important;
+    border-radius: 0 !important;
+}
+
+
+
+.view-group {
+    display: -ms-flexbox;
+    display: flex;
+    -ms-flex-direction: row;
+    flex-direction: row;
+    padding-left: 0;
+    margin-bottom: 0;
+}
+.thumbnail
+{
+    margin-bottom: 30px;
+    padding: 0px;
+    -webkit-border-radius: 0px;
+    -moz-border-radius: 0px;
+    border-radius: 0px;
+}
+
+.item.list-group-item
+{
+    float: none;
+    width: 100%;
+    background-color: #fff;
+    margin-bottom: 30px;
+    -ms-flex: 0 0 100%;
+    flex: 0 0 100%;
+    max-width: 100%;
+    padding: 0 1rem;
+    border: 0;
+}
+.item.list-group-item .img-event {
+    float: left;
+    width: 30%;
+}
+
+.item.list-group-item .list-group-image
+{
+    margin-right: 10px;
+}
+.item.list-group-item .thumbnail
+{
+    margin-bottom: 0px;
+    display: inline-block;
+}
+.item.list-group-item .caption
+{
+    float: left;
+    width: 70%;
+    margin: 0;
+}
+
+.item.list-group-item:before, .item.list-group-item:after
+{
+    display: table;
+    content: " ";
+}
+
+.item.list-group-item:after
+{
+    clear: both;
+}
+
+
+
+@media (min-width: 991px){
+    .card {
+        width: 20%;
+    }
+
+    .card {
+
+        border-color:#ffc107;
+
+        border-top: none;
+
+        border-radius: 0;
+
+        }
+    .advtop.text-center {
+        position: absolute;
+        right: 0;
+    }
+
+    .adv .col-lg-4.text-center {
+        position: relative;
+    }
+    .advbon{position: absolute;bottom: 0;right: 0;}
+}
+
+
+@media (max-width: 991px){
+    .card-group {
+        flex-flow: column;
+    }
+    .card {
+        width: 50%;
+        border-color:#ffc107;
+        border-radius: 0;
+        border-top: none;
+    }
+
+    .advtop, .advbon{
+        margin-top: 15px;
+        width: 49%;
+        float: left;
+    }
+    .advtop{
+        margin-right: 1%;
+    }
+    .advbon{
+        margin-left: 1%;
+    }
+
+}
+.card-body {
+    padding: 9px 30px !important;
+}
+
+.card-body .gia-moi {
+    margin: 0;
+    color: #FF0040;
+    font-weight: 700;
+    font-size: 14px;
+}
+
+.card-body .tt {
+    color: #2E2E2E;
+    font-size: 14px;
+}
+
+.card-body .card-title {
+    text-decoration: none;
+    color: #1C1C1C;
+    font-weight: 700;
+    font-size: 13px;
+    transition: .4s;
+}
+
+.card img {
+    width: 75%;
+    height: auto;
+    margin: auto;
+    border-radius: 0;
+    margin-top: 15px;
+    transition: .5s;
+    min-height: 170px;
+}
+
+.card:hover img {
+    transform: translateY(-5px);
+}
+
+.card:hover .card-body .card-title {
+    color: #ffc107;
+}
+
+.card-body p del {
+    color: #2E2E2E;
+    font-size: 12px;
+    margin-left: 8px;
+}
+.card{
+    border-left: 1px solid transparent;
+}
+.card:last-child{
+    border-right: 1px solid #ffc107;
+}
+
+
+.container.adv {
+    margin-bottom: 20px;
+}
+
+
+button.qty-change{
+    height: 30px;
+    width: 30px;
+    border-radius: 50%;
+    background: #fff;
+    border: 1px solid #e3e3e3;
+}
+
+.qty-input{
+    height: 30px;
+    width: 23px;
+    text-align: center;
+    border: none;
+}
+
+button:focus{
+    outline: none;
+}
+
